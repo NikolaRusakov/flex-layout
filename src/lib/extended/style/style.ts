@@ -67,8 +67,9 @@ export class StyleDirective extends BaseDirective2 implements DoCheck {
   /** Add generated styles */
   protected updateWithValue(value: any) {
     const styles = this.buildStyleMap(value);
-    this.ngStyleInstance.ngStyle = {...this.fallbackStyles, ...styles};
     if (this.isServer) {
+    this.ngStyleInstance.ngStyle = {...this.fallbackStyles, ...styles};
+    }else {
       this.applyStyleToElement(styles);
     }
     this.ngStyleInstance.ngDoCheck();
